@@ -1,0 +1,18 @@
+spring:
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+  r2dbc:
+    url: r2dbc:h2:mem://./testdb
+    username: sa
+    password: testdb
+  h2:
+    console:
+      enabled: true
+  output:
+    ansi:
+      enabled: detect
+  webflux:
+    base-path: /userApi
+
