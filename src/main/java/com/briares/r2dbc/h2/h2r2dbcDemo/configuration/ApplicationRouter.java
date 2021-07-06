@@ -9,6 +9,7 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 import com.briares.r2dbc.h2.h2r2dbcDemo.model.UserEntity;
 import com.briares.r2dbc.h2.h2r2dbcDemo.repository.UserRepository;
 import lombok.AllArgsConstructor;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -20,21 +21,21 @@ public class ApplicationRouter {
   private final UserRepository userRepository;
 
   @Bean
-  RouterFunction<ServerResponse> getEmployeeByIdRoute() {
+  RouterFunction<ServerResponse> getUserByIdRoute() {
     return route(GET("/user/{id}"),
         req -> ok().body(
             userRepository.findById(Long.parseLong(req.pathVariable("id"))), UserEntity.class));
   }
 
   @Bean
-  RouterFunction<ServerResponse> getAllEmployeesRoute() {
+  RouterFunction<ServerResponse> getAllUsersRoute() {
     return route(GET("/users"),
         req -> ok().body(
             userRepository.findAll(), UserEntity.class));
   }
 
   @Bean
-  RouterFunction<ServerResponse> updateEmployeeRoute() {
+  RouterFunction<ServerResponse> updateUserRoute() {
     return route(POST("/users/update"),
         req -> req.body(toMono(UserEntity.class))
             .doOnNext(userRepository::save)
@@ -58,5 +59,4 @@ public class ApplicationRouter {
                     .doOnNext(userRepository::save)
                     .then(ok().build())));
   }
-
 }

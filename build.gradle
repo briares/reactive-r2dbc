@@ -32,8 +32,10 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    //testImplementation('org.junit.jupiter:junit-jupiter-api:5.6.2')
 }
 
 test {
-	useJUnitPlatform()
+	//useJUnitPlatform()
+    useJUnit()
 }

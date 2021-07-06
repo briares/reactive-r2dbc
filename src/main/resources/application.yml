@@ -13,6 +13,8 @@ spring:
   output:
     ansi:
       enabled: detect
+  profiles:
+    default: local
   webflux:
     base-path: /userApi
 

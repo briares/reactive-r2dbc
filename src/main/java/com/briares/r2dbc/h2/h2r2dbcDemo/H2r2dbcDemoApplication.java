@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
@@ -19,6 +20,7 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 @EnableWebFlux
 @EnableR2dbcRepositories
 @SpringBootApplication
+
 @Slf4j
 public class H2r2dbcDemoApplication {
 
@@ -35,6 +37,7 @@ public class H2r2dbcDemoApplication {
   }
 
   @Bean
+  @Profile("local")
   public CommandLineRunner runner(UserRepository repository) {
 
     return (args) -> {
